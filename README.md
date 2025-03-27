@@ -178,6 +178,3 @@ For GPU acceleration, you need to install NVIDIA Docker. Follow these steps:
    ```bash
    sudo systemctl restart docker
    ```
-
-
-复制以上全部内容到一个 README.md 文件中，即可在 GitHub 上分享该项目。
