@@ -178,3 +178,23 @@ For GPU acceleration, you need to install NVIDIA Docker. Follow these steps:
    ```bash
    sudo systemctl restart docker
    ```
+
+> **Note:**
+> 
+> If you don't need to use the `ros_bridge` script, you can directly create a container using the following command after installing NVIDIA Docker support:
+> 
+> ```bash
+> sudo docker run -dit \
+>   --name=[name] \
+>   --privileged \
+>   -v /dev:/dev \
+>   -v /home/yang:/home/yang \
+>   -v /tmp/.X11-unix:/tmp/.X11-unix \
+>   -e DISPLAY=unix$DISPLAY \
+>   -w /home/yang \
+>   --net=host \
+>   --gpus all \
+>   -e NVIDIA_DRIVER_CAPABILITIES=all \
+>   [image]:[tag]
+> ```
+
