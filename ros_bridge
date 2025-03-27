@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# 定义容器名称变量
+CONTAINER_NAME="ros_bridge"
+
+xhost +local: >> /dev/null
+echo "请输入指令控制 ${CONTAINER_NAME}: restart(r) enter(e) start(s) close(c) delete(d) test(t) :"
+read choose
+case $choose in
+    s)
+        docker start ${CONTAINER_NAME}
+        ;;
+    r)
+        docker restart ${CONTAINER_NAME}
+        ;;
+    e)
+        docker exec -it ${CONTAINER_NAME} /bin/bash
+        ;;
+    c)
+        docker stop ${CONTAINER_NAME}
+        ;;
+    d)
+        docker stop ${CONTAINER_NAME} && docker rm ${CONTAINER_NAME} && sudo rm -rf /home/yang/docker/bin/${CONTAINER_NAME}
+        ;;
+    t)
+        docker exec -it ${CONTAINER_NAME} /bin/bash -c "source /ros_entrypoint.sh && roscore"
+        ;;
+    
+
+esac
+
+newgrp docker
+
